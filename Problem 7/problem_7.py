@@ -68,6 +68,8 @@ class Router:
         # you need to split the path into parts for 
         # both the add_handler and loopup functions,
         # so it should be placed in a function here
+        if path is None:
+            return []
         return [part for part in path.split("/") if part != '']
 
 # %%
@@ -97,6 +99,20 @@ print(router.lookup("/udacity/courses/course")) # should print 'courses handler'
 #Case 5
 print("\nTest Case 5: Check for udacity/courses/course/12 which doesnt exists")
 print(router.lookup("/udacity/courses/course/12")) # should print 'not found handler'
+
+
+#Edge Case 1
+print("\nEdge Case 1: Add None Path and search for None path")
+router = Router("Udacity Home Page", "not found handler")
+router.add_handler(None, "udacity modules handler")
+print(router.lookup(None)) # should print 'udacity modules handler'
+
+#Edge Case 2
+print("\nEdge Case 2: Add long path")
+router = Router("Udacity Home Page", "not found handler")
+path = "learn.udacity.com/nanodegrees/nd256/parts/cd1887/lessons/032713d7-07e0-468f-8393-7b34bf2899e7/concepts/032713d7-07e0-468f-8393-7b34bf2899e7-submit-project/ds/ds/ds/ds/sd/dsw/sd/sd/ds"
+router.add_handler(path, "Long path Handler")
+print(router.lookup(path)) # should print 'udacity modules handler'
 
 # %%
 

@@ -6,7 +6,7 @@ In this problem, we will look for smallest and largest integer from a list of un
 
 # %%
 def get_min_max(ints):
-    if len(ints) == 0:
+    if ints is None or len(ints) == 0:
         return (None,None)
 
     min_num = ints[0]
@@ -42,6 +42,17 @@ print ("Pass with output: " + str(get_min_max([])) if ((None,None) == get_min_ma
 #Case 3
 print("\nTest Case 3: Array with same numbers")
 print ("Pass with output: " + str(get_min_max([4,4,4,4,4,4,4,4,4,4])) if ((4,4) == get_min_max([4,4,4,4,4,4,4,4,4,4])) else "Fail") #(4,4)
+
+#Edge Case 1
+print("\nEdge Case 1: None array")
+print ("Pass with output: " + str(get_min_max(None)) if ((None,None) == get_min_max(None)) else "Fail") #(None,None)
+
+#Edge Case 2
+print("\nEdge Case 2: Big list")
+import random
+arr = [i for i in range(501,5000)]
+random.shuffle(arr)
+print ("Pass with output: " + str(get_min_max(arr)) if ((501,4999) == get_min_max(arr)) else "Fail") #(None,None)
 
 # %%
 

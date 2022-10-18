@@ -8,7 +8,7 @@ Note: O(n) does not necessarily mean single-traversal. For e.g. if you traverse 
 
 # %%
 def sort_012(input_list):
-    if len(input_list) <= 1:
+    if input_list is None or len(input_list) <= 1:
         return input_list
     
     front_index = 0
@@ -32,7 +32,7 @@ def sort_012(input_list):
 # %%
 def test_function(test_case):
     sorted_array = sort_012(test_case)
-    if sorted_array == sorted(test_case):
+    if (test_case is None and sorted_array is None) or (sorted_array == sorted(test_case)):
         print("Pass with output: " + str(sorted_array))
     else:
         print("Fail with output: " + str(sorted_array))
@@ -48,6 +48,14 @@ test_function([]) #[]
 #Case 3
 print("\nTest Case 3: List with 1 number")
 test_function([1]) #[1]
+
+#Edge Case 1
+print("\nEdge Case 1: None List")
+test_function(None) #None
+
+#Edge Case 2
+print("\nEdge Case 2: Big list")
+test_function([2]*50 + [0]*50 + [1] * 100)
 
 # %%
 

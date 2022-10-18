@@ -12,6 +12,9 @@ The expected time complexity is O(log(n))
 
 # %%
 def square_root(num):
+    if num is None:
+        return None
+
     return square_root_sol(num,1,num,None)
 
 def square_root_sol(num,start,end,ans):
@@ -40,8 +43,19 @@ print(square_root(417)) #Expected output 20
 
 #CASE 3
 print("\nTest Case 1: Number is very big")
-square_root(19873124322121) #Expected output 4457927
+print(square_root(19873124322121)) #Expected output 4457927
 
+#Edge Case 1
+print("\nEdge Case 1: Invalid number")
+print(square_root(None)) #Expected output None
+
+#Edge Case 2
+print("\nEdge Case 2: Very big number")
+print(square_root(9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999)) #Expected output 99999999999999999999999999999999999999999999999999999
+
+
+
+# %%
 
 
 # %%

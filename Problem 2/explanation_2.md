@@ -13,4 +13,6 @@ Time complexity =>
     O(logN) because we have just addied 2 more conditions in binary search
 
 Space complexity =>
-    O(1) as we are not  using any extra space
+    With the help of helper variables mid,ans,start,end we are parsing the array
+    We are not creating a new array so that will not be considered
+        => O(4)

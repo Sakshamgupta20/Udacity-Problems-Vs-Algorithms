@@ -37,6 +37,8 @@ class Trie:
     def find(self, prefix):
         ## Find the Trie node that represents this prefix
         current_node = self.root
+        if prefix is None:
+            return current_node
         for char in prefix:
             if char not in current_node.children:
                 return None
@@ -109,12 +111,16 @@ print("\nTest Case 1: Find valid prefix with 1 character") # [nthology , ntagoni
 test(MyTrie,"a")
 
 #Case 2
-print("\nTest Case 2: Find invalid prefix ") # sa not found
-test(MyTrie,"sa")
-
-#Case 2
-print("\nTest Case 3: Find valid complete word") # No suffix found
+print("\nTest Case 2: Find valid complete word") # No suffix found
 test(MyTrie,"tripod")
+
+#Edge Case 1
+print("\nEdge Case 1: None prefix") # All words in trie are returned
+test(MyTrie,None)
+
+#Edge Case 2
+print("\nEdge Case 2: Find invalid prefix ") # sa not found
+test(MyTrie,"sa")
 
 
 

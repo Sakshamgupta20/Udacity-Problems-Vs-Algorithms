@@ -34,18 +34,17 @@ def rotared_array_search_sol(input_list, number, begin_index, end_index):
     if input_list[mid] == number:
         return mid
 
-
     #It means array was partitioned here and the mid is the end number of right side
     #e.g. 4,5,6,7,0,1,2, here 7 is mid
-    if input_list[mid] > input_list[mid + 1] and input_list[mid] > input_list[mid - 1]:
+    if (mid+1 <= end_index and input_list[mid] > input_list[mid + 1]) and (mid - 1 >= begin_index and input_list[mid] > input_list[mid - 1]):
         if input_list[end_index] > number:
             return rotared_array_search_sol(input_list, number, mid + 1, end_index)
         return rotared_array_search_sol(input_list, number, begin_index, mid - 1)
 
     #It means array was partitioned here and the mid is the first number of left side
     #e.g. 5,6,7,0,1,2,3 here 0 is mid
-    if input_list[mid] < input_list[mid + 1] and input_list[mid] < input_list[mid - 1]:
-        if input_list[end_index] > number:
+    if (mid+1 <= end_index and input_list[mid] < input_list[mid + 1]) and (mid - 1 >= begin_index and input_list[mid] < input_list[mid - 1]):
+        if input_list[begin_index] < number:
             return rotared_array_search_sol(input_list, number, mid + 1, end_index)
         return rotared_array_search_sol(input_list, number, begin_index, mid - 1)
 
@@ -57,6 +56,8 @@ def rotared_array_search_sol(input_list, number, begin_index, end_index):
 
 # %%
 def linear_search(input_list, number):
+    if input_list is None:
+        return -1
     for index, element in enumerate(input_list):
         if element == number:
             return index
@@ -85,9 +86,16 @@ test_function([[5,6,7,0,1,2,4], 1]) #Expected output 4
 print("\nTest Case 3: Pivot element lies in between is of left side first element")
 test_function([[5,6,7,0,1,2,4], 7]) #Expected output 2
 
-#CASE 4
-print("\nTest Case 4: Empty List")
+#Edge CASE 1
+print("\nTest Edge Case 1: Empty List/None List")
 test_function([[], 1]) #Expected output -1
+
+print("\nTest Edge Case 1: Empty List/None List")
+test_function([None, 1]) #Expected output -1
+
+#Edge CASE 2
+print("\nTest Edge Case 2: Big List")
+test_function([[i for i in range(200,500)] + [i for i in range(0,200)], 400]) #Expected output 200
 
 
 
